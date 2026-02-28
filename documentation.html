@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OptiNote — Documentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  --teal:        #006E7F;
+  --teal-light:  #E8F4F6;
+  --teal-mid:    #0D8FA3;
+  --teal-dark:   #004F5C;
+  --accent:      #00B8D4;
+  --ink:         #0F1F23;
+  --ink-mid:     #1A3038;
+  --white:       #FAFCFC;
+  --surface:     #F2F7F8;
+  --border:      #D0E4E8;
+  --text:        #1A2E32;
+  --text-muted:  #5A7A80;
+  --text-light:  #8FA8AD;
+  --amber:       #F59E0B;
+  --green:       #10B981;
+  --font-head:   'Fraunces', serif;
+  --font-body:   'DM Sans', sans-serif;
+  --font-mono:   'DM Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ── Layout ─────────────────────────────────── */
+.page-wrap { max-width: 960px; margin: 0 auto; padding: 0 32px; }
+
+/* ── Hero ────────────────────────────────────── */
+.hero {
+  background: var(--teal-dark);
+  background-image: radial-gradient(ellipse at 20% 50%, rgba(0,184,212,0.18) 0%, transparent 60%),
+                    radial-gradient(ellipse at 80% 20%, rgba(0,110,127,0.3) 0%, transparent 50%);
+  padding: 80px 32px 70px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 300px; height: 300px;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 50%;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: -40px;
+  width: 200px; height: 200px;
+  border: 1px solid rgba(0,184,212,0.15);
+  border-radius: 50%;
+}
+
+.hero-inner { max-width: 960px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0,184,212,0.15);
+  border: 1px solid rgba(0,184,212,0.3);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-family: var(--font-head);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-sub {
+  font-size: 17px;
+  color: rgba(255,255,255,0.65);
+  max-width: 560px;
+  line-height: 1.65;
+  margin-bottom: 36px;
+}
+
+.hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pill {
+  padding: 5px 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: rgba(255,255,255,0.8);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ── TOC ─────────────────────────────────────── */
+.toc-section {
+  padding: 36px 0;
+  border-bottom: 1px solid var(--border);
+}
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+.toc-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.15s;
+}
+.toc-item:hover { border-color: var(--teal-mid); color: var(--teal); background: var(--teal-light); }
+.toc-num { font-family: var(--font-mono); font-size: 11px; color: var(--text-light); min-width: 18px; }
+
+/* ── Sections ────────────────────────────────── */
+.doc-section {
+  padding: 64px 0 48px;
+  border-bottom: 1px solid var(--border);
+}
+.doc-section:last-of-type { border-bottom: none; }
+
+.section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--teal-mid);
+  margin-bottom: 10px;
+}
+
+.section-title {
+  font-family: var(--font-head);
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
+
+.section-intro {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 620px;
+  margin-bottom: 36px;
+  line-height: 1.7;
+}
+
+/* ── Two-col layout ──────────────────────────── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+@media (max-width: 680px) { .two-col { grid-template-columns: 1fr; } }
+
+.three-col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 680px) { .three-col { grid-template-columns: 1fr; } }
+
+/* ── Feature cards ───────────────────────────── */
+.feat-card {
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.feat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--accent));
+}
+.feat-icon {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+.feat-card h3 {
+  font-family: var(--font-head);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.feat-card p {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* ── Steps ───────────────────────────────────── */
+.step-list { display: flex; flex-direction: column; gap: 16px; }
+.step {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.step-num {
+  width: 28px; height: 28px;
+  background: var(--teal);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.step-body h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 3px;
+}
+.step-body p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ── Code / Note blocks ──────────────────────── */
+.code-block {
+  background: var(--ink);
+  color: #a8d8de;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.8;
+  padding: 18px 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+  white-space: pre;
+  margin: 16px 0;
+}
+.code-block .cm { color: #5a7a80; }
+.code-block .ck { color: #00B8D4; }
+.code-block .cv { color: #7dd3a8; }
+.code-block .ch { color: #e8a87c; }
+
+.note-block {
+  display: flex;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin: 16px 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.note-block.info { background: var(--teal-light); border-left: 3px solid var(--teal); }
+.note-block.warn { background: #FFF8E1; border-left: 3px solid var(--amber); }
+.note-block.success { background: #ECFDF5; border-left: 3px solid var(--green); }
+.note-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.note-block p { color: var(--text-muted); }
+.note-block strong { color: var(--text); }
+
+/* ── ICD table ───────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 16px 0;
+}
+thead th {
+  background: var(--teal-dark);
+  color: rgba(255,255,255,0.85);
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+tbody tr:nth-child(even) { background: var(--surface); }
+tbody td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: top;
+}
+.mono { font-family: var(--font-mono); font-size: 12px; color: var(--teal); }
+
+/* ── UI Mockup SVGs ──────────────────────────── */
+.mockup-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0;
+}
+.mockup-wrap svg {
+  filter: drop-shadow(0 8px 32px rgba(0,70,90,0.18));
+  border-radius: 10px;
+}
+
+.mockup-caption {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+/* ── Workflow steps with arrows ──────────────── */
+.workflow {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 28px 0;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.wf-step {
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+  padding: 14px 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  position: relative;
+}
+.wf-step .wf-icon { font-size: 20px; margin-bottom: 5px; display: block; }
+.wf-step .wf-label { font-size: 12px; font-weight: 600; color: var(--ink); display: block; }
+.wf-step .wf-sub { font-size: 11px; color: var(--text-light); margin-top: 2px; display: block; }
+.wf-arrow {
+  flex-shrink: 0;
+  width: 28px;
+  text-align: center;
+  color: var(--teal-mid);
+  font-size: 18px;
+}
+
+/* ── Footer ──────────────────────────────────── */
+footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  padding: 32px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+footer strong { color: rgba(255,255,255,0.8); }
+footer a { color: var(--accent); text-decoration: none; }
+
+/* ── Utility ─────────────────────────────────── */
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+.divider { height: 1px; background: var(--border); margin: 28px 0; }
+strong.teal { color: var(--teal); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">📋 Technical Documentation · v1.0</div>
+    <h1>Opti<em>Note</em><br>Documentation</h1>
+    <p class="hero-sub">Complete workflow guide for the AI-powered ophthalmic documentation Chrome extension. Built for NHS clinicians who need fast, structured, GDPR-safe clinical notes.</p>
+    <div class="hero-pills">
+      <span class="pill">Chrome Extension MV3</span>
+      <span class="pill">GDPR Safe · Local First</span>
+      <span class="pill">5 Conditions</span>
+      <span class="pill">ICD-10 Mapped</span>
+      <span class="pill">Groq AI · SOAP Format</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ TOC -->
+<div class="page-wrap">
+<nav class="toc-section">
+  <div class="toc-grid">
+    <a href="#overview" class="toc-item"><span class="toc-num">01</span> Overview</a>
+    <a href="#install" class="toc-item"><span class="toc-num">02</span> Installation</a>
+    <a href="#setup" class="toc-item"><span class="toc-num">03</span> First-time Setup</a>
+    <a href="#templates" class="toc-item"><span class="toc-num">04</span> Templates Tab</a>
+    <a href="#icd10" class="toc-item"><span class="toc-num">05</span> ICD-10 Tab</a>
+    <a href="#soap" class="toc-item"><span class="toc-num">06</span> SOAP Tab</a>
+    <a href="#examples" class="toc-item"><span class="toc-num">07</span> Full Examples</a>
+    <a href="#privacy" class="toc-item"><span class="toc-num">08</span> Privacy & GDPR</a>
+    <a href="#tips" class="toc-item"><span class="toc-num">09</span> Tips & Shortcuts</a>
+  </div>
+</nav>
+</div>
+
+<!-- ═══════════════════════════════════════════ 01 OVERVIEW -->
+<div class="page-wrap">
+<section class="doc-section" id="overview">
+  <div class="section-eyebrow">01 — Overview</div>
+  <h2 class="section-title">What is OptiNote?</h2>
+  <p class="section-intro">OptiNote is a browser extension that lives in your Chrome toolbar. It reduces documentation time for ophthalmic clinicians by providing structured templates, instant ICD-10 lookup, and AI-powered SOAP note formatting — without any patient data ever leaving your device.</p>
+
+  <div class="three-col">
+    <div class="feat-card">
+      <div class="feat-icon">📋</div>
+      <h3>Template Engine</h3>
+      <p>Pre-built structured note templates for DR, AMD, Glaucoma, ROP, and Cataract. Toggle-based fields for speed. One-click copy to clipboard.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🔎</div>
+      <h3>ICD-10 Mapper</h3>
+      <p>Type a symptom or condition, get accurate ophthalmic ICD-10 codes instantly. Build a code list and copy all at once. Fully offline.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🤖</div>
+      <h3>SOAP Formatter</h3>
+      <p>Paste free-text clinical notes. Get a structured Subjective / Objective / Assessment / Plan note via Groq AI in ~2 seconds.</p>
+    </div>
+  </div>
+
+  <!-- Overall UI mockup -->
+  <div class="mockup-wrap">
+    <svg width="440" height="380" viewBox="0 0 440 380" xmlns="http://www.w3.org/2000/svg">
+      <!-- Extension shell -->
+      <rect width="440" height="380" rx="10" fill="#FAFCFC"/>
+
+      <!-- Header -->
+      <rect width="440" height="44" rx="0" fill="#004F5C"/>
+      <rect width="440" height="44" rx="10" fill="#004F5C"/>
+      <rect y="10" width="440" height="34" fill="#004F5C"/>
+
+      <!-- Eye logo -->
+      <ellipse cx="28" cy="22" rx="11" ry="7" fill="rgba(255,255,255,0.15)"/>
+      <circle cx="28" cy="22" r="4" fill="#00B8D4"/>
+      <circle cx="28" cy="22" r="1.8" fill="#002830"/>
+
+      <!-- Logo text -->
+      <text x="44" y="27" font-family="DM Sans" font-size="14" font-weight="300" fill="white">Opti<tspan font-weight="600">Note</tspan></text>
+
+      <!-- Settings icon -->
+      <text x="414" y="27" font-family="DM Sans" font-size="14" fill="rgba(255,255,255,0.6)">⚙</text>
+
+      <!-- Tab nav -->
+      <rect y="44" width="440" height="36" fill="#FAFCFC"/>
+      <line x1="0" y1="80" x2="440" y2="80" stroke="#D0E4E8" stroke-width="1.5"/>
+
+      <!-- Tab buttons -->
+      <rect x="0" y="44" width="146" height="36" fill="#FAFCFC"/>
+      <text x="73" y="67" font-family="DM Sans" font-size="11" font-weight="600" fill="#006E7F" text-anchor="middle">TEMPLATES</text>
+      <rect x="0" y="77" width="146" height="2.5" fill="#006E7F"/>
+
+      <rect x="147" y="44" width="146" height="36" fill="#FAFCFC"/>
+      <text x="220" y="67" font-family="DM Sans" font-size="11" font-weight="500" fill="#8FA8AD" text-anchor="middle">ICD-10</text>
+
+      <rect x="294" y="44" width="146" height="36" fill="#FAFCFC"/>
+      <text x="367" y="67" font-family="DM Sans" font-size="11" font-weight="500" fill="#8FA8AD" text-anchor="middle">SOAP</text>
+
+      <!-- Section label -->
+      <text x="14" y="102" font-family="DM Sans" font-size="10" font-weight="600" fill="#8FA8AD" letter-spacing="1">SELECT CONDITION</text>
+
+      <!-- Condition chips -->
+      <rect x="14" y="110" width="54" height="26" rx="8" fill="#E8F4F6" stroke="#006E7F" stroke-width="1.5"/>
+      <text x="41" y="127" font-family="DM Sans" font-size="12" font-weight="600" fill="#004F5C" text-anchor="middle">DR</text>
+
+      <rect x="74" y="110" width="58" height="26" rx="8" fill="#F2F7F8" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="103" y="127" font-family="DM Sans" font-size="12" font-weight="600" fill="#5A7A80" text-anchor="middle">AMD</text>
+
+      <rect x="138" y="110" width="78" height="26" rx="8" fill="#F2F7F8" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="177" y="127" font-family="DM Sans" font-size="12" font-weight="600" fill="#5A7A80" text-anchor="middle">Glaucoma</text>
+
+      <rect x="222" y="110" width="56" height="26" rx="8" fill="#F2F7F8" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="250" y="127" font-family="DM Sans" font-size="12" font-weight="600" fill="#5A7A80" text-anchor="middle">ROP</text>
+
+      <rect x="284" y="110" width="74" height="26" rx="8" fill="#F2F7F8" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="321" y="127" font-family="DM Sans" font-size="12" font-weight="600" fill="#5A7A80" text-anchor="middle">Cataract</text>
+
+      <!-- Template form -->
+      <rect x="14" y="145" width="412" height="176" rx="8" fill="#F2F7F8" stroke="#D0E4E8" stroke-width="1"/>
+
+      <!-- Form rows -->
+      <text x="26" y="165" font-family="DM Sans" font-size="10" font-weight="600" fill="#5A7A80" letter-spacing="0.5">PATIENT REF</text>
+      <rect x="26" y="170" width="390" height="26" rx="4" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="36" y="187" font-family="DM Sans" font-size="12" fill="#8FA8AD">e.g. RH-2024-001</text>
+
+      <text x="26" y="210" font-family="DM Sans" font-size="10" font-weight="600" fill="#5A7A80" letter-spacing="0.5">DR GRADE</text>
+      <rect x="26" y="215" width="56" height="22" rx="11" fill="#006E7F"/>
+      <text x="54" y="230" font-family="DM Sans" font-size="11" font-weight="600" fill="white" text-anchor="middle">None</text>
+      <rect x="88" y="215" width="50" height="22" rx="11" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="113" y="230" font-family="DM Sans" font-size="11" fill="#5A7A80" text-anchor="middle">Mild</text>
+      <rect x="144" y="215" width="50" height="22" rx="11" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="169" y="230" font-family="DM Sans" font-size="11" fill="#5A7A80" text-anchor="middle">Mod</text>
+      <rect x="200" y="215" width="58" height="22" rx="11" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="229" y="230" font-family="DM Sans" font-size="11" fill="#5A7A80" text-anchor="middle">Severe</text>
+      <rect x="264" y="215" width="44" height="22" rx="11" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="286" y="230" font-family="DM Sans" font-size="11" fill="#5A7A80" text-anchor="middle">PDR</text>
+
+      <text x="26" y="254" font-family="DM Sans" font-size="10" font-weight="600" fill="#5A7A80" letter-spacing="0.5">MACULOPATHY</text>
+      <rect x="26" y="259" width="62" height="22" rx="11" fill="#006E7F"/>
+      <text x="57" y="274" font-family="DM Sans" font-size="11" font-weight="600" fill="white" text-anchor="middle">None</text>
+      <rect x="94" y="259" width="56" height="22" rx="11" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="122" y="274" font-family="DM Sans" font-size="11" fill="#5A7A80" text-anchor="middle">DMO</text>
+      <rect x="156" y="259" width="60" height="22" rx="11" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="186" y="274" font-family="DM Sans" font-size="11" fill="#5A7A80" text-anchor="middle">CSMO</text>
+
+      <text x="26" y="298" font-family="DM Sans" font-size="10" font-weight="600" fill="#5A7A80" letter-spacing="0.5">VA (LOGMAR)</text>
+      <rect x="26" y="303" width="150" height="26" rx="4" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="36" y="320" font-family="DM Sans" font-size="12" fill="#8FA8AD">e.g. 0.2</text>
+
+      <!-- Action buttons -->
+      <rect x="300" y="332" width="126" height="32" rx="4" fill="#006E7F"/>
+      <text x="363" y="352" font-family="DM Sans" font-size="13" font-weight="500" fill="white" text-anchor="middle">Generate note</text>
+      <rect x="224" y="332" width="70" height="32" rx="4" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="259" y="352" font-family="DM Sans" font-size="13" fill="#5A7A80" text-anchor="middle">Clear</text>
+    </svg>
+  </div>
+  <p class="mockup-caption">Fig 1 — OptiNote extension popup showing the Templates tab with DR condition selected</p>
+</section>
+</div>
+
+<!-- ═══════════════════════════════════════════ 02 INSTALL -->
+<div class="page-wrap">
+<section class="doc-section" id="install">
+  <div class="section-eyebrow">02 — Installation</div>
+  <h2 class="section-title">Installing the Extension</h2>
+  <p class="section-intro">OptiNote is loaded as an unpacked extension in Chrome Developer Mode. This takes about 2 minutes and requires no Chrome Web Store account.</p>
+
+  <div class="two-col">
+    <div>
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h4>Download & extract</h4>
+            <p>Download <code>optinote.zip</code> and extract it to a permanent location — e.g. <code>Documents/optinote/</code>. Do not move or delete this folder after installation.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h4>Open Chrome Extensions</h4>
+            <p>In Chrome, go to <strong>chrome://extensions/</strong> or open the menu → More tools → Extensions.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h4>Enable Developer Mode</h4>
+            <p>Toggle <strong>Developer mode</strong> on in the top-right corner of the Extensions page.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h4>Load unpacked</h4>
+            <p>Click <strong>Load unpacked</strong> and select the extracted <code>optinote/</code> folder (the one containing <code>manifest.json</code>).</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <h4>Pin to toolbar</h4>
+            <p>Click the puzzle piece icon in the Chrome toolbar → find OptiNote → click the pin icon. The OptiNote icon will now appear in your toolbar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <!-- Chrome extensions page mockup -->
+      <svg width="100%" viewBox="0 0 380 280" xmlns="http://www.w3.org/2000/svg">
+        <!-- Browser chrome -->
+        <rect width="380" height="280" rx="8" fill="#F1F3F4"/>
+        <!-- Address bar area -->
+        <rect x="0" y="0" width="380" height="44" rx="8" fill="#FFFFFF"/>
+        <rect y="10" width="380" height="34" fill="#FFFFFF"/>
+        <rect x="20" y="12" width="240" height="22" rx="11" fill="#F1F3F4"/>
+        <text x="36" y="27" font-family="DM Mono" font-size="11" fill="#5A7A80">chrome://extensions/</text>
+        <!-- Page content -->
+        <rect x="0" y="44" width="380" height="236" rx="0" fill="#FAFAFA"/>
+        <!-- Extensions header -->
+        <rect x="0" y="44" width="380" height="50" fill="#FFFFFF"/>
+        <text x="20" y="76" font-family="DM Sans" font-size="18" font-weight="500" fill="#202124">Extensions</text>
+        <!-- Dev mode toggle -->
+        <text x="210" y="74" font-family="DM Sans" font-size="11" fill="#5A7A80">Developer mode</text>
+        <rect x="310" y="62" width="40" height="20" rx="10" fill="#006E7F"/>
+        <circle cx="340" cy="72" r="8" fill="white"/>
+        <!-- Load unpacked button -->
+        <rect x="20" y="105" width="120" height="32" rx="4" fill="white" stroke="#DADCE0" stroke-width="1"/>
+        <text x="80" y="125" font-family="DM Sans" font-size="11" fill="#1A73E8" text-anchor="middle">Load unpacked</text>
+        <!-- Extension card -->
+        <rect x="20" y="150" width="340" height="100" rx="8" fill="white" stroke="#DADCE0" stroke-width="1"/>
+        <circle cx="56" cy="188" r="18" fill="#004F5C"/>
+        <ellipse cx="56" cy="188" rx="10" ry="6" fill="rgba(255,255,255,0.2)"/>
+        <circle cx="56" cy="188" r="4" fill="#00B8D4"/>
+        <text x="84" y="182" font-family="DM Sans" font-size="13" font-weight="600" fill="#202124">OptiNote</text>
+        <text x="84" y="197" font-family="DM Sans" font-size="11" fill="#5A7A80">AI-powered ophthalmic documentation</text>
+        <text x="84" y="210" font-family="DM Mono" font-size="10" fill="#8FA8AD">ID: opbdexk...</text>
+        <!-- Toggle -->
+        <rect x="296" y="180" width="40" height="20" rx="10" fill="#006E7F"/>
+        <circle cx="326" cy="190" r="8" fill="white"/>
+        <text x="84" y="234" font-family="DM Sans" font-size="11" fill="#1A73E8">Details</text>
+        <text x="130" y="234" font-family="DM Sans" font-size="11" fill="#1A73E8">Remove</text>
+      </svg>
+      <p class="mockup-caption">Fig 2 — Chrome Extensions page with Developer mode enabled and OptiNote loaded</p>
+    </div>
+  </div>
+
+  <div class="note-block warn">
+    <span class="note-icon">⚠️</span>
+    <p><strong>Developer mode warning:</strong> Chrome may show an occasional banner saying "Disable developer mode extensions." This is normal for self-loaded extensions and does not affect functionality. Click <strong>Cancel</strong> to dismiss it.</p>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════════════════════════════ 03 SETUP -->
+<div class="page-wrap">
+<section class="doc-section" id="setup">
+  <div class="section-eyebrow">03 — First-Time Setup</div>
+  <h2 class="section-title">Configuring OptiNote</h2>
+  <p class="section-intro">Before using the SOAP formatter, you need a free Groq API key. Templates and ICD-10 lookup work immediately without any configuration.</p>
+
+  <div class="two-col">
+    <div class="step-list">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Get a free Groq API key</h4>
+          <p>Visit <strong>console.groq.com</strong> → Create account → API Keys → Create API key. Copy the key (starts with <code>gsk_</code>).</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Open Settings</h4>
+          <p>Click the OptiNote icon in your toolbar → click the <strong>⚙</strong> gear icon in the top-right corner.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Paste your API key</h4>
+          <p>Paste the Groq key into the <strong>Groq API Key</strong> field. Optionally add your name and department — these appear in generated notes.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Save</h4>
+          <p>Click <strong>Save settings</strong>. You'll see a green "✓ Saved" confirmation. Settings persist across browser sessions via Chrome local storage.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings panel mockup -->
+    <div>
+      <svg width="100%" viewBox="0 0 380 300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="380" height="300" rx="8" fill="rgba(0,40,50,0.55)"/>
+        <!-- Settings panel -->
+        <rect x="10" y="44" width="360" height="248" rx="12" fill="#FAFCFC"/>
+        <!-- Header -->
+        <text x="24" y="74" font-family="DM Sans" font-size="14" font-weight="600" fill="#004F5C">Settings</text>
+        <text x="348" y="72" font-family="DM Sans" font-size="16" fill="#5A7A80" text-anchor="end">✕</text>
+        <line x1="24" y1="82" x2="356" y2="82" stroke="#D0E4E8" stroke-width="1"/>
+        <!-- API Key field -->
+        <text x="24" y="102" font-family="DM Sans" font-size="10" font-weight="600" fill="#5A7A80" letter-spacing="0.5">GROQ API KEY</text>
+        <rect x="24" y="108" width="332" height="28" rx="4" fill="white" stroke="#0D8FA3" stroke-width="1.5"/>
+        <text x="34" y="127" font-family="DM Mono" font-size="11" fill="#1A2E32">gsk_••••••••••••••••••••</text>
+        <text x="24" y="150" font-family="DM Sans" font-size="11" fill="#5A7A80">Required for SOAP formatting. Get your free key at</text>
+        <text x="24" y="163" font-family="DM Sans" font-size="11" fill="#006E7F">console.groq.com</text>
+        <!-- Clinician field -->
+        <text x="24" y="186" font-family="DM Sans" font-size="10" font-weight="600" fill="#5A7A80" letter-spacing="0.5">CLINICIAN NAME</text>
+        <rect x="24" y="192" width="332" height="28" rx="4" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+        <text x="34" y="211" font-family="DM Sans" font-size="12" fill="#1A2E32">Dr A. Patel</text>
+        <!-- Dept field -->
+        <text x="24" y="235" font-family="DM Sans" font-size="10" font-weight="600" fill="#5A7A80" letter-spacing="0.5">DEPARTMENT</text>
+        <rect x="24" y="241" width="332" height="28" rx="4" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+        <text x="34" y="260" font-family="DM Sans" font-size="12" fill="#1A2E32">Ophthalmology, QE Hospital Birmingham</text>
+        <!-- Save button -->
+        <rect x="24" y="276" width="332" height="0" rx="4" fill="#006E7F"/>
+        <!-- Privacy note area -->
+        <text x="190" y="282" font-family="DM Sans" font-size="11" fill="#5A7A80" text-anchor="middle">🔒 No patient data leaves your browser.</text>
+      </svg>
+      <p class="mockup-caption">Fig 3 — Settings panel with Groq API key configured</p>
+    </div>
+  </div>
+
+  <div class="note-block success">
+    <span class="note-icon">✅</span>
+    <p><strong>Groq free tier is generous:</strong> The free plan provides 14,400 requests per day on Llama 3.3 70B — more than enough for clinical use. There is no billing required to get started.</p>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════════════════════════════ 04 TEMPLATES -->
+<div class="page-wrap">
+<section class="doc-section" id="templates">
+  <div class="section-eyebrow">04 — Templates Tab</div>
+  <h2 class="section-title">Using the Template Engine</h2>
+  <p class="section-intro">The Templates tab generates structured, copy-paste-ready clinical notes from toggle-based form inputs. No typing required for most fields. Designed around the 5 conditions most commonly documented in NHS ophthalmic departments.</p>
+
+  <!-- Workflow -->
+  <div class="workflow">
+    <div class="wf-step">
+      <span class="wf-icon">🏥</span>
+      <span class="wf-label">Pick condition</span>
+      <span class="wf-sub">DR · AMD · etc.</span>
+    </div>
+    <div class="wf-arrow">→</div>
+    <div class="wf-step">
+      <span class="wf-icon">🖱</span>
+      <span class="wf-label">Toggle fields</span>
+      <span class="wf-sub">Grade · Eye · Findings</span>
+    </div>
+    <div class="wf-arrow">→</div>
+    <div class="wf-step">
+      <span class="wf-icon">⚡</span>
+      <span class="wf-label">Generate</span>
+      <span class="wf-sub">Instant, local</span>
+    </div>
+    <div class="wf-arrow">→</div>
+    <div class="wf-step">
+      <span class="wf-icon">📋</span>
+      <span class="wf-label">Copy & paste</span>
+      <span class="wf-sub">Into your EMR</span>
+    </div>
+  </div>
+
+  <h3 style="font-family:var(--font-head);font-size:22px;margin-bottom:16px;color:var(--ink)">Template fields by condition</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Condition</th>
+        <th>Toggle Fields</th>
+        <th>Text Fields</th>
+        <th>Output includes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>DR</strong></td>
+        <td>Eye · DR Grade (5 levels) · Maculopathy</td>
+        <td>Patient ref · VA LogMAR · HbA1c · Notes</td>
+        <td>Findings · Impression · Graded management plan</td>
+      </tr>
+      <tr>
+        <td><strong>AMD</strong></td>
+        <td>Eye · AMD Type · Stage · Anti-VEGF agent</td>
+        <td>Patient ref · VA LogMAR · OCT findings</td>
+        <td>Findings · OCT summary · Treatment plan</td>
+      </tr>
+      <tr>
+        <td><strong>Glaucoma</strong></td>
+        <td>Eye · Type (POAG/PACG/OHT/NTG) · VF status</td>
+        <td>Patient ref · IOP R/L · CDR R/L · Current drops</td>
+        <td>IOP · CDR · VF · Graded follow-up interval</td>
+      </tr>
+      <tr>
+        <td><strong>ROP</strong></td>
+        <td>Eye · Stage (1–5) · Zone (I–III) · Plus disease</td>
+        <td>Infant ID · Gestational age · PMA at exam</td>
+        <td>Stage/Zone/Plus · Treatment urgency guidance</td>
+      </tr>
+      <tr>
+        <td><strong>Cataract</strong></td>
+        <td>Eye · Type · LOCS Grade (1–4)</td>
+        <td>Patient ref · VA Snellen · VA LogMAR · Symptoms</td>
+        <td>Type · Grade · Surgical vs conservative plan</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="divider"></div>
+
+  <h3 style="font-family:var(--font-head);font-size:22px;margin-bottom:8px;color:var(--ink)">Example: DR template output</h3>
+  <p style="color:var(--text-muted);font-size:14px;margin-bottom:16px;">Settings: Both eyes · Moderate NPDR · DMO · VA 0.3 · HbA1c 71 mmol/mol</p>
+
+  <div class="code-block"><span class="ch">DIABETIC RETINOPATHY — CLINICAL NOTE</span>
+<span class="cm">──────────────────────────────────────────</span>
+<span class="ck">Date:</span>          <span class="cv">28 Feb 2025</span>
+<span class="ck">Patient ref:</span>   <span class="cv">NHS-2024-0042</span>
+<span class="ck">Clinician:</span>     <span class="cv">Dr A. Patel</span>
+<span class="ck">Department:</span>    <span class="cv">Ophthalmology, QE Hospital</span>
+
+<span class="ch">FINDINGS</span>
+<span class="ck">Eye(s):</span>        <span class="cv">both eyes</span>
+<span class="ck">DR Grade:</span>      <span class="cv">Moderate NPDR</span>
+<span class="ck">Maculopathy:</span>   <span class="cv">DMO present</span>
+<span class="ck">VA (LogMAR):</span>   <span class="cv">0.3</span>
+<span class="ck">HbA1c:</span>         <span class="cv">71 mmol/mol</span>
+
+<span class="ch">IMPRESSION</span>
+Moderate NPDR identified in both eyes.
+DMO present — consider referral to medical retina.
+
+<span class="ch">PLAN</span>
+• 6-monthly review; refer to ophthalmology if progressing
+• Refer for intravitreal anti-VEGF treatment</div>
+
+  <!-- ROP mockup -->
+  <div class="mockup-wrap">
+    <svg width="420" height="310" viewBox="0 0 420 310" xmlns="http://www.w3.org/2000/svg">
+      <rect width="420" height="310" rx="10" fill="#FAFCFC"/>
+      <rect width="420" height="44" rx="10" fill="#004F5C"/>
+      <rect y="20" width="420" height="24" fill="#004F5C"/>
+      <text x="28" y="27" font-family="DM Sans" font-size="14" font-weight="300" fill="white">Opti<tspan font-weight="600">Note</tspan></text>
+
+      <!-- Tabs -->
+      <rect y="44" width="420" height="36" fill="#FAFCFC"/>
+      <line x1="0" y1="80" x2="420" y2="80" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="70" y="67" font-family="DM Sans" font-size="11" font-weight="600" fill="#006E7F" text-anchor="middle">TEMPLATES</text>
+      <rect x="0" y="77" width="140" height="2.5" fill="#006E7F"/>
+      <text x="210" y="67" font-family="DM Sans" font-size="11" fill="#8FA8AD" text-anchor="middle">ICD-10</text>
+      <text x="350" y="67" font-family="DM Sans" font-size="11" fill="#8FA8AD" text-anchor="middle">SOAP</text>
+
+      <!-- Condition chips — ROP active -->
+      <text x="14" y="100" font-family="DM Sans" font-size="10" font-weight="600" fill="#8FA8AD" letter-spacing="1">SELECT CONDITION</text>
+      <rect x="14" y="108" width="42" height="24" rx="7" fill="#F2F7F8" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="35" y="124" font-family="DM Sans" font-size="11" fill="#5A7A80" text-anchor="middle">DR</text>
+      <rect x="62" y="108" width="52" height="24" rx="7" fill="#F2F7F8" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="88" y="124" font-family="DM Sans" font-size="11" fill="#5A7A80" text-anchor="middle">AMD</text>
+      <rect x="120" y="108" width="72" height="24" rx="7" fill="#F2F7F8" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="156" y="124" font-family="DM Sans" font-size="11" fill="#5A7A80" text-anchor="middle">Glaucoma</text>
+      <rect x="198" y="108" width="48" height="24" rx="7" fill="#E8F4F6" stroke="#006E7F" stroke-width="1.5"/>
+      <text x="222" y="124" font-family="DM Sans" font-size="11" font-weight="600" fill="#004F5C" text-anchor="middle">ROP</text>
+      <rect x="252" y="108" width="68" height="24" rx="7" fill="#F2F7F8" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="286" y="124" font-family="DM Sans" font-size="11" fill="#5A7A80" text-anchor="middle">Cataract</text>
+
+      <!-- ROP form -->
+      <rect x="14" y="140" width="392" height="124" rx="8" fill="#F2F7F8" stroke="#D0E4E8" stroke-width="1"/>
+
+      <text x="24" y="160" font-family="DM Sans" font-size="10" font-weight="600" fill="#5A7A80" letter-spacing="0.5">ROP STAGE</text>
+      <rect x="24" y="165" width="36" height="22" rx="11" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="42" y="180" font-family="DM Sans" font-size="11" fill="#5A7A80" text-anchor="middle">1</text>
+      <rect x="66" y="165" width="36" height="22" rx="11" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="84" y="180" font-family="DM Sans" font-size="11" fill="#5A7A80" text-anchor="middle">2</text>
+      <rect x="108" y="165" width="36" height="22" rx="11" fill="#006E7F"/>
+      <text x="126" y="180" font-family="DM Sans" font-size="11" fill="white" text-anchor="middle">3</text>
+      <rect x="150" y="165" width="38" height="22" rx="11" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="169" y="180" font-family="DM Sans" font-size="11" fill="#5A7A80" text-anchor="middle">4A</text>
+      <rect x="194" y="165" width="38" height="22" rx="11" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="213" y="180" font-family="DM Sans" font-size="11" fill="#5A7A80" text-anchor="middle">4B</text>
+      <rect x="238" y="165" width="36" height="22" rx="11" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="256" y="180" font-family="DM Sans" font-size="11" fill="#5A7A80" text-anchor="middle">5</text>
+
+      <text x="24" y="205" font-family="DM Sans" font-size="10" font-weight="600" fill="#5A7A80" letter-spacing="0.5">ZONE</text>
+      <rect x="24" y="210" width="44" height="22" rx="11" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="46" y="225" font-family="DM Sans" font-size="11" fill="#5A7A80" text-anchor="middle">Zone I</text>
+      <rect x="74" y="210" width="46" height="22" rx="11" fill="#006E7F"/>
+      <text x="97" y="225" font-family="DM Sans" font-size="11" fill="white" text-anchor="middle">Zone II</text>
+      <rect x="126" y="210" width="50" height="22" rx="11" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="151" y="225" font-family="DM Sans" font-size="11" fill="#5A7A80" text-anchor="middle">Zone III</text>
+
+      <text x="24" y="248" font-family="DM Sans" font-size="10" font-weight="600" fill="#5A7A80" letter-spacing="0.5">PLUS DISEASE</text>
+      <rect x="24" y="253" width="56" height="22" rx="11" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="52" y="268" font-family="DM Sans" font-size="11" fill="#5A7A80" text-anchor="middle">Absent</text>
+      <rect x="86" y="253" width="62" height="22" rx="11" fill="#006E7F"/>
+      <text x="117" y="268" font-family="DM Sans" font-size="11" fill="white" text-anchor="middle">Pre-plus</text>
+      <rect x="154" y="253" width="48" height="22" rx="11" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+      <text x="178" y="268" font-family="DM Sans" font-size="11" fill="#5A7A80" text-anchor="middle">Plus</text>
+
+      <!-- Generate button -->
+      <rect x="288" y="278" width="118" height="28" rx="4" fill="#006E7F"/>
+      <text x="347" y="296" font-family="DM Sans" font-size="12" font-weight="500" fill="white" text-anchor="middle">Generate note</text>
+    </svg>
+  </div>
+  <p class="mockup-caption">Fig 4 — ROP template with Stage 3, Zone II, Pre-plus disease selected</p>
+</section>
+</div>
+
+<!-- ═══════════════════════════════════════════ 05 ICD-10 -->
+<div class="page-wrap">
+<section class="doc-section" id="icd10">
+  <div class="section-eyebrow">05 — ICD-10 Tab</div>
+  <h2 class="section-title">ICD-10 Code Lookup</h2>
+  <p class="section-intro">Type a symptom or condition name into the search field to retrieve matching ophthalmic ICD-10 codes instantly. All lookup is done locally against an embedded JSON file — no internet connection required, no API calls made.</p>
+
+  <div class="workflow">
+    <div class="wf-step">
+      <span class="wf-icon">⌨️</span>
+      <span class="wf-label">Type symptom</span>
+      <span class="wf-sub">or click quick tag</span>
+    </div>
+    <div class="wf-arrow">→</div>
+    <div class="wf-step">
+      <span class="wf-icon">📋</span>
+      <span class="wf-label">Results appear</span>
+      <span class="wf-sub">Instant, offline</span>
+    </div>
+    <div class="wf-arrow">→</div>
+    <div class="wf-step">
+      <span class="wf-icon">➕</span>
+      <span class="wf-label">Add codes</span>
+      <span class="wf-sub">Click + to select</span>
+    </div>
+    <div class="wf-arrow">→</div>
+    <div class="wf-step">
+      <span class="wf-icon">📤</span>
+      <span class="wf-label">Copy all</span>
+      <span class="wf-sub">Paste into system</span>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3 style="font-family:var(--font-head);font-size:20px;margin-bottom:12px;color:var(--ink)">Search terms that work</h3>
+      <table>
+        <thead><tr><th>Search term</th><th>Returns codes for</th></tr></thead>
+        <tbody>
+          <tr><td><span class="mono">floaters</span></td><td>Vitreous floaters, haemorrhage, retinal detachment</td></tr>
+          <tr><td><span class="mono">field loss</span></td><td>Visual field defect, glaucoma, retinal oedema</td></tr>
+          <tr><td><span class="mono">AMD</span></td><td>Full AMD code set (dry, wet, GA, metamorphopsia)</td></tr>
+          <tr><td><span class="mono">red eye</span></td><td>Conjunctivitis, keratitis, uveitis</td></tr>
+          <tr><td><span class="mono">wavy lines</span></td><td>Metamorphopsia, wet AMD</td></tr>
+          <tr><td><span class="mono">blurred vision</span></td><td>Visual disturbance, cataract, AMD</td></tr>
+          <tr><td><span class="mono">elevated iop</span></td><td>Glaucoma, OHT</td></tr>
+          <tr><td><span class="mono">dry eyes</span></td><td>Dry eye syndrome codes</td></tr>
+          <tr><td><span class="mono">microaneurysms</span></td><td>DR-specific retinopathy codes</td></tr>
+          <tr><td><span class="mono">ptosis</span></td><td>Eyelid ptosis codes</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ICD-10 tab mockup -->
+    <div>
+      <svg width="100%" viewBox="0 0 380 320" xmlns="http://www.w3.org/2000/svg">
+        <rect width="380" height="320" rx="10" fill="#FAFCFC"/>
+        <rect width="380" height="44" rx="10" fill="#004F5C"/>
+        <rect y="20" width="380" height="24" fill="#004F5C"/>
+        <text x="28" y="27" font-family="DM Sans" font-size="14" font-weight="300" fill="white">Opti<tspan font-weight="600">Note</tspan></text>
+        <!-- tabs -->
+        <rect y="44" width="380" height="36" fill="#FAFCFC"/>
+        <line x1="0" y1="80" x2="380" y2="80" stroke="#D0E4E8" stroke-width="1.5"/>
+        <text x="63" y="67" font-family="DM Sans" font-size="11" fill="#8FA8AD" text-anchor="middle">TEMPLATES</text>
+        <text x="190" y="67" font-family="DM Sans" font-size="11" font-weight="600" fill="#006E7F" text-anchor="middle">ICD-10</text>
+        <rect x="127" y="77" width="127" height="2.5" fill="#006E7F"/>
+        <text x="318" y="67" font-family="DM Sans" font-size="11" fill="#8FA8AD" text-anchor="middle">SOAP</text>
+        <!-- search row -->
+        <rect x="14" y="90" width="280" height="28" rx="4" fill="white" stroke="#0D8FA3" stroke-width="1.5"/>
+        <text x="24" y="109" font-family="DM Sans" font-size="12" fill="#1A2E32">floaters</text>
+        <rect x="300" y="90" width="66" height="28" rx="4" fill="#006E7F"/>
+        <text x="333" y="109" font-family="DM Sans" font-size="12" fill="white" text-anchor="middle">Search</text>
+        <!-- quick tags -->
+        <text x="14" y="134" font-family="DM Sans" font-size="10" font-weight="600" fill="#8FA8AD" letter-spacing="0.5">QUICK:</text>
+        <rect x="56" y="124" width="28" height="18" rx="9" fill="#F2F7F8" stroke="#D0E4E8" stroke-width="1"/>
+        <text x="70" y="136" font-family="DM Sans" font-size="10" fill="#5A7A80" text-anchor="middle">DR</text>
+        <rect x="90" y="124" width="36" height="18" rx="9" fill="#F2F7F8" stroke="#D0E4E8" stroke-width="1"/>
+        <text x="108" y="136" font-family="DM Sans" font-size="10" fill="#5A7A80" text-anchor="middle">AMD</text>
+        <rect x="132" y="124" width="56" height="18" rx="9" fill="#F2F7F8" stroke="#D0E4E8" stroke-width="1"/>
+        <text x="160" y="136" font-family="DM Sans" font-size="10" fill="#5A7A80" text-anchor="middle">Glaucoma</text>
+        <rect x="194" y="124" width="52" height="18" rx="9" fill="#F2F7F8" stroke="#D0E4E8" stroke-width="1"/>
+        <text x="220" y="136" font-family="DM Sans" font-size="10" fill="#5A7A80" text-anchor="middle">Red eye</text>
+        <!-- Results -->
+        <rect x="14" y="148" width="352" height="36" rx="4" fill="#E8F4F6" stroke="#006E7F" stroke-width="1.5"/>
+        <rect x="22" y="157" width="52" height="18" rx="3" fill="rgba(0,110,127,0.12)"/>
+        <text x="48" y="170" font-family="DM Mono" font-size="11" fill="#006E7F" text-anchor="middle">H43.399</text>
+        <text x="84" y="162" font-family="DM Sans" font-size="11" fill="#1A2E32">Vitreous floaters, unspecified eye</text>
+        <text x="84" y="175" font-family="DM Sans" font-size="10" fill="#8FA8AD">Vitreous</text>
+        <text x="346" y="170" font-family="DM Sans" font-size="16" fill="#0D8FA3" text-anchor="middle">+</text>
+
+        <rect x="14" y="190" width="352" height="36" rx="4" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+        <rect x="22" y="199" width="52" height="18" rx="3" fill="rgba(0,110,127,0.08)"/>
+        <text x="48" y="212" font-family="DM Mono" font-size="11" fill="#006E7F" text-anchor="middle">H43.10</text>
+        <text x="84" y="204" font-family="DM Sans" font-size="11" fill="#1A2E32">Vitreous haemorrhage, unspecified</text>
+        <text x="84" y="217" font-family="DM Sans" font-size="10" fill="#8FA8AD">Vitreous</text>
+        <text x="346" y="212" font-family="DM Sans" font-size="16" fill="#0D8FA3" text-anchor="middle">+</text>
+
+        <rect x="14" y="232" width="352" height="36" rx="4" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+        <rect x="22" y="241" width="46" height="18" rx="3" fill="rgba(0,110,127,0.08)"/>
+        <text x="45" y="254" font-family="DM Mono" font-size="11" fill="#006E7F" text-anchor="middle">H33.40</text>
+        <text x="78" y="246" font-family="DM Sans" font-size="11" fill="#1A2E32">Retinal detachment with retinal break</text>
+        <text x="78" y="259" font-family="DM Sans" font-size="10" fill="#8FA8AD">Retinal</text>
+        <text x="346" y="254" font-family="DM Sans" font-size="16" fill="#0D8FA3" text-anchor="middle">+</text>
+
+        <!-- Selected codes panel -->
+        <rect x="14" y="276" width="352" height="36" rx="6" fill="#F2F7F8" stroke="#D0E4E8" stroke-width="1"/>
+        <text x="24" y="289" font-family="DM Sans" font-size="10" font-weight="600" fill="#8FA8AD" letter-spacing="0.5">SELECTED CODES</text>
+        <rect x="296" y="279" width="62" height="18" rx="9" fill="#006E7F"/>
+        <text x="327" y="291" font-family="DM Sans" font-size="10" fill="white" text-anchor="middle">Copy all</text>
+        <text x="24" y="306" font-family="DM Mono" font-size="11" fill="#006E7F">H43.399</text>
+        <text x="90" y="306" font-family="DM Sans" font-size="11" fill="#1A2E32">— Vitreous floaters</text>
+      </svg>
+      <p class="mockup-caption">Fig 5 — ICD-10 tab showing search results for "floaters" with one code selected</p>
+    </div>
+  </div>
+
+  <div class="note-block info">
+    <span class="note-icon">💡</span>
+    <p><strong>Tip:</strong> You can combine searches — search "floaters", add codes, then search "field loss" and add more. All selected codes accumulate in the panel below until you reload the extension.</p>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════════════════════════════ 06 SOAP -->
+<div class="page-wrap">
+<section class="doc-section" id="soap">
+  <div class="section-eyebrow">06 — SOAP Tab</div>
+  <h2 class="section-title">SOAP Note Formatter</h2>
+  <p class="section-intro">Paste any free-text clinical note into the SOAP tab and OptiNote will restructure it into a formal Subjective / Objective / Assessment / Plan format using Groq's Llama 3.3 70B model — with an ophthalmology-specific system prompt for accurate clinical terminology.</p>
+
+  <div class="two-col">
+    <div>
+      <div class="workflow" style="flex-direction:column;gap:12px;">
+        <div class="wf-step" style="text-align:left;display:flex;gap:12px;align-items:center;">
+          <span class="wf-icon">📝</span>
+          <div>
+            <span class="wf-label" style="display:block">Paste free text</span>
+            <span class="wf-sub" style="display:block">Dictation, rough notes, any format</span>
+          </div>
+        </div>
+        <div class="wf-step" style="text-align:left;display:flex;gap:12px;align-items:center;">
+          <span class="wf-icon">🏥</span>
+          <div>
+            <span class="wf-label" style="display:block">Select context</span>
+            <span class="wf-sub" style="display:block">General · DR Screen · Med Retina · Glaucoma · Paeds</span>
+          </div>
+        </div>
+        <div class="wf-step" style="text-align:left;display:flex;gap:12px;align-items:center;">
+          <span class="wf-icon">⚡</span>
+          <div>
+            <span class="wf-label" style="display:block">Format SOAP</span>
+            <span class="wf-sub" style="display:block">~2 second Groq API call</span>
+          </div>
+        </div>
+        <div class="wf-step" style="text-align:left;display:flex;gap:12px;align-items:center;">
+          <span class="wf-icon">📋</span>
+          <div>
+            <span class="wf-label" style="display:block">Copy output</span>
+            <span class="wf-sub" style="display:block">Structured SOAP into your EMR</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="note-block warn" style="margin-top:20px">
+        <span class="note-icon">🔑</span>
+        <p><strong>Requires Groq API key.</strong> Get a free key at console.groq.com. Without it the SOAP tab will show an error prompting you to add your key in Settings.</p>
+      </div>
+    </div>
+
+    <!-- SOAP mockup -->
+    <div>
+      <svg width="100%" viewBox="0 0 380 340" xmlns="http://www.w3.org/2000/svg">
+        <rect width="380" height="340" rx="10" fill="#FAFCFC"/>
+        <rect width="380" height="44" rx="10" fill="#004F5C"/>
+        <rect y="20" width="380" height="24" fill="#004F5C"/>
+        <text x="28" y="27" font-family="DM Sans" font-size="14" font-weight="300" fill="white">Opti<tspan font-weight="600">Note</tspan></text>
+        <rect y="44" width="380" height="36" fill="#FAFCFC"/>
+        <line x1="0" y1="80" x2="380" y2="80" stroke="#D0E4E8" stroke-width="1.5"/>
+        <text x="63" y="67" font-family="DM Sans" font-size="11" fill="#8FA8AD" text-anchor="middle">TEMPLATES</text>
+        <text x="190" y="67" font-family="DM Sans" font-size="11" fill="#8FA8AD" text-anchor="middle">ICD-10</text>
+        <text x="318" y="67" font-family="DM Sans" font-size="11" font-weight="600" fill="#006E7F" text-anchor="middle">SOAP</text>
+        <rect x="254" y="77" width="127" height="2.5" fill="#006E7F"/>
+
+        <!-- Groq badge -->
+        <rect x="14" y="90" width="50" height="18" rx="9" fill="#006E7F"/>
+        <text x="39" y="103" font-family="DM Sans" font-size="10" font-weight="600" fill="white" text-anchor="middle">Groq AI</text>
+
+        <!-- Free text input -->
+        <text x="14" y="126" font-family="DM Sans" font-size="10" font-weight="600" fill="#5A7A80" letter-spacing="0.5">CLINICAL NOTES (FREE TEXT)</text>
+        <rect x="14" y="130" width="352" height="82" rx="4" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+        <text x="24" y="148" font-family="DM Sans" font-size="11" fill="#1A2E32">84 year old female, 3 week history of</text>
+        <text x="24" y="163" font-family="DM Sans" font-size="11" fill="#1A2E32">distorted central vision right eye. VA</text>
+        <text x="24" y="178" font-family="DM Sans" font-size="11" fill="#1A2E32">R 6/36, L 6/9. OCT: subretinal fluid</text>
+        <text x="24" y="193" font-family="DM Sans" font-size="11" fill="#1A2E32">and PED at fovea right eye…</text>
+
+        <!-- Context toggles -->
+        <text x="14" y="227" font-family="DM Sans" font-size="10" font-weight="600" fill="#5A7A80" letter-spacing="0.5">SPECIALTY CONTEXT</text>
+        <rect x="14" y="232" width="68" height="22" rx="11" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+        <text x="48" y="247" font-family="DM Sans" font-size="10" fill="#5A7A80" text-anchor="middle">General</text>
+        <rect x="88" y="232" width="78" height="22" rx="11" fill="#006E7F"/>
+        <text x="127" y="247" font-family="DM Sans" font-size="10" fill="white" text-anchor="middle">Med Retina</text>
+        <rect x="172" y="232" width="60" height="22" rx="11" fill="white" stroke="#D0E4E8" stroke-width="1.5"/>
+        <text x="202" y="247" font-family="DM Sans" font-size="10" fill="#5A7A80" text-anchor="middle">Glaucoma</text>
+
+        <!-- Format button -->
+        <rect x="240" y="263" width="126" height="28" rx="4" fill="#006E7F"/>
+        <text x="303" y="281" font-family="DM Sans" font-size="12" fill="white" text-anchor="middle">Format SOAP ↵</text>
+
+        <!-- Output box -->
+        <rect x="14" y="298" width="352" height="34" rx="6" fill="#E8F4F6" stroke="#D0E4E8" stroke-width="1"/>
+        <text x="24" y="311" font-family="DM Sans" font-size="10" font-weight="600" fill="#004F5C" letter-spacing="0.5">SOAP NOTE</text>
+        <rect x="296" y="303" width="60" height="18" rx="9" fill="#006E7F"/>
+        <text x="326" y="315" font-family="DM Sans" font-size="10" fill="white" text-anchor="middle">Copy</text>
+        <text x="24" y="326" font-family="DM Mono" font-size="10" fill="#5A7A80">SUBJECTIVE — Patient presents with…</text>
+      </svg>
+      <p class="mockup-caption">Fig 6 — SOAP tab with Medical Retina context and output beginning to appear</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════════════════════════════ 07 EXAMPLES -->
+<div class="page-wrap">
+<section class="doc-section" id="examples">
+  <div class="section-eyebrow">07 — Full Examples</div>
+  <h2 class="section-title">End-to-End Worked Examples</h2>
+  <p class="section-intro">Complete input/output pairs for each major use case, ready to copy and test in the extension.</p>
+
+  <h3 style="font-family:var(--font-head);font-size:22px;margin:0 0 8px;color:var(--ink)">Example 1 — SOAP: AMD with wet conversion</h3>
+  <p style="color:var(--text-muted);font-size:13px;margin-bottom:12px;"><span class="tag">Tab: SOAP</span> &nbsp; <span class="tag">Context: Medical Retina</span></p>
+
+  <p style="font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:6px;">INPUT (paste this):</p>
+  <div class="code-block">84 year old female referred by optometrist with 3 week history of distorted central vision
+in right eye. Amsler grid shows central distortion. VA right 6/36, left 6/9. OCT shows
+subretinal fluid and pigment epithelial detachment at the fovea right eye. Left eye shows
+drusen only, no fluid. On no current ocular treatment. PMH hypertension, on amlodipine.</div>
+
+  <p style="font-size:13px;font-weight:600;color:var(--text-muted);margin:16px 0 6px;">EXPECTED OUTPUT:</p>
+  <div class="code-block"><span class="ch">SUBJECTIVE</span>
+84-year-old female presents with a 3-week history of distorted central vision in the right
+eye. Patient notes central distortion on Amsler grid testing. No current ocular medications.
+Past medical history: hypertension, managed with amlodipine.
+
+<span class="ch">OBJECTIVE</span>
+Visual Acuity: Right eye 6/36, Left eye 6/9
+Amsler grid: Central metamorphopsia, right eye
+OCT (Right eye): Subretinal fluid (SRF) and pigment epithelial detachment (PED) at the
+fovea — consistent with active choroidal neovascularisation (CNV)
+OCT (Left eye): Drusen present; no subretinal or intraretinal fluid identified
+
+<span class="ch">ASSESSMENT</span>
+Right eye: Exudative (wet) age-related macular degeneration with active CNV lesion —
+ICD-10: H35.32
+Left eye: Intermediate dry AMD — ICD-10: H35.31
+
+<span class="ch">PLAN</span>
+• Refer urgently to medical retina for intravitreal anti-VEGF therapy (right eye)
+• Discuss treatment options: aflibercept or ranibizumab loading phase
+• Patient to monitor left eye with Amsler grid daily and report any new distortion
+• Optimise cardiovascular risk factors with GP (hypertension control)</div>
+
+  <div class="divider"></div>
+
+  <h3 style="font-family:var(--font-head);font-size:22px;margin:0 0 8px;color:var(--ink)">Example 2 — SOAP: Glaucoma follow-up</h3>
+  <p style="color:var(--text-muted);font-size:13px;margin-bottom:12px;"><span class="tag">Tab: SOAP</span> &nbsp; <span class="tag">Context: Glaucoma Clinic</span></p>
+
+  <div class="code-block"><span class="cm">INPUT:</span>
+62 year old woman, known POAG on latanoprost both eyes. IOP today R 18 L 16 mmHg.
+CDR R 0.75 L 0.65. HRT shows progressive thinning superior rim right eye vs last visit.
+VF showing reliable result with early arcuate scotoma right eye. Compliant with drops.
+CCT R 530 L 525 microns.
+
+<span class="cm">OUTPUT:</span>
+<span class="ch">SUBJECTIVE</span>
+62-year-old female with established primary open-angle glaucoma (POAG), currently on
+latanoprost both eyes. Reports good compliance with topical therapy. No new visual symptoms.
+
+<span class="ch">OBJECTIVE</span>
+IOP: Right 18 mmHg, Left 16 mmHg (on latanoprost)
+CDR: Right 0.75, Left 0.65
+CCT: Right 530 μm, Left 525 μm
+HRT: Progressive superior rim thinning identified in right eye compared to prior imaging
+Visual Fields: Reliable result; early arcuate scotoma present — right eye
+
+<span class="ch">ASSESSMENT</span>
+POAG — right eye showing progressive structural and functional change despite current IOP
+control. ICD-10: H40.1110 (POAG, right eye, stage unspecified)
+
+<span class="ch">PLAN</span>
+• Review current IOP target — consider stepping down to ≤15 mmHg for right eye
+• Add dorzolamide/timolol combination to right eye; review in 8 weeks
+• Repeat 24-2 VF in 3 months (right eye priority)
+• Consider referral for SLT if IOP not further reduced on combination therapy</div>
+
+  <div class="divider"></div>
+
+  <h3 style="font-family:var(--font-head);font-size:22px;margin:0 0 8px;color:var(--ink)">Example 3 — Templates: ROP output</h3>
+  <p style="color:var(--text-muted);font-size:13px;margin-bottom:12px;"><span class="tag">Tab: Templates</span> &nbsp; <span class="tag">Condition: ROP</span> &nbsp; <span class="tag">Stage 3 · Zone II · Pre-plus</span></p>
+
+  <div class="code-block"><span class="ch">RETINOPATHY OF PREMATURITY — CLINICAL NOTE</span>
+<span class="cm">────────────────────────────────────────────────</span>
+<span class="ck">Date:</span>        28 Feb 2025
+<span class="ck">Infant ID:</span>   NNU-0087
+<span class="ck">Clinician:</span>   Dr A. Patel
+
+<span class="ch">INFANT DETAILS</span>
+<span class="ck">Gestational age at birth:</span>  26+5 weeks
+<span class="ck">PMA at examination:</span>        33 weeks PMA
+
+<span class="ch">FINDINGS</span>
+<span class="ck">Eye(s):</span>        both eyes
+<span class="ck">ROP Stage:</span>    Stage 3
+<span class="ck">Zone:</span>          Zone II
+<span class="ck">Plus disease:</span> Pre-plus disease
+
+<span class="ch">IMPRESSION</span>
+ROP Stage 3, Zone II, with pre-plus disease — both eyes.
+
+<span class="ch">PLAN</span>
+• Review in 3 days; treat if plus disease develops
+• Parents counselled on diagnosis and follow-up importance</div>
+
+  <div class="divider"></div>
+
+  <h3 style="font-family:var(--font-head);font-size:22px;margin:0 0 8px;color:var(--ink)">Example 4 — ICD-10: Building a multi-code list</h3>
+  <p style="color:var(--text-muted);font-size:13px;margin-bottom:12px;"><span class="tag">Tab: ICD-10</span> &nbsp; Scenario: Documenting a patient with DR + macular oedema + cataract</p>
+
+  <table>
+    <thead><tr><th>Search</th><th>Code selected</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><span class="mono">microaneurysms</span></td><td><span class="mono">H36.0</span></td><td>Diabetic retinopathy</td></tr>
+      <tr><td><span class="mono">microaneurysms</span></td><td><span class="mono">E11.3211</span></td><td>T2DM with mild NPDR + macular oedema</td></tr>
+      <tr><td><span class="mono">blurred vision</span></td><td><span class="mono">H35.81</span></td><td>Retinal oedema / DMO</td></tr>
+      <tr><td><span class="mono">cataract</span></td><td><span class="mono">H26.9</span></td><td>Unspecified cataract</td></tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:13px;color:var(--text-muted);margin-top:10px;">Hit <strong>Copy all</strong> to get:</p>
+  <div class="code-block">H36.0 — Diabetic retinopathy in DM
+E11.3211 — T2DM with mild NPDR with macular oedema
+H35.81 — Retinal oedema / Diabetic macular oedema
+H26.9 — Unspecified cataract</div>
+
+</section>
+</div>
+
+<!-- ═══════════════════════════════════════════ 08 PRIVACY -->
+<div class="page-wrap">
+<section class="doc-section" id="privacy">
+  <div class="section-eyebrow">08 — Privacy & GDPR</div>
+  <h2 class="section-title">Data flows & GDPR compliance</h2>
+  <p class="section-intro">OptiNote was designed from the ground up to minimise external data transmission. The following table documents every data flow in the extension.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Data processed</th>
+        <th>Where?</th>
+        <th>External?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Templates</strong></td>
+        <td>Form inputs (patient ref, clinical values)</td>
+        <td>Browser memory only</td>
+        <td>❌ Never</td>
+      </tr>
+      <tr>
+        <td><strong>ICD-10 lookup</strong></td>
+        <td>Search query text</td>
+        <td>Browser memory only</td>
+        <td>❌ Never</td>
+      </tr>
+      <tr>
+        <td><strong>SOAP formatter</strong></td>
+        <td>Free-text clinical note</td>
+        <td>Sent to Groq API (HTTPS)</td>
+        <td>⚠️ Yes — Groq only</td>
+      </tr>
+      <tr>
+        <td><strong>Settings</strong></td>
+        <td>API key, clinician name, department</td>
+        <td>Chrome Local Storage</td>
+        <td>❌ Never</td>
+      </tr>
+      <tr>
+        <td><strong>Generated notes</strong></td>
+        <td>Output text</td>
+        <td>Browser memory only</td>
+        <td>❌ Never</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note-block warn">
+    <span class="note-icon">⚠️</span>
+    <p><strong>SOAP tab advisory:</strong> When using the SOAP formatter, free-text clinical notes are transmitted to Groq's API. Do not include direct patient identifiers (full name, NHS number, DOB) in SOAP input. Use patient reference codes only. Review your trust's policy on third-party AI tools before use in clinical settings.</p>
+  </div>
+
+  <div class="note-block success">
+    <span class="note-icon">🔒</span>
+    <p><strong>Templates and ICD-10 are fully air-gapped:</strong> These features work completely offline. Patient data entered into the Templates tab never touches a network connection of any kind.</p>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════════════════════════════ 09 TIPS -->
+<div class="page-wrap">
+<section class="doc-section" id="tips">
+  <div class="section-eyebrow">09 — Tips & Shortcuts</div>
+  <h2 class="section-title">Getting the most from OptiNote</h2>
+
+  <div class="two-col">
+    <div>
+      <h3 style="font-family:var(--font-head);font-size:20px;margin-bottom:16px;color:var(--ink)">Keyboard shortcuts</h3>
+      <table>
+        <thead><tr><th>Action</th><th>Shortcut</th></tr></thead>
+        <tbody>
+          <tr><td>Search ICD-10</td><td><span class="mono">Enter</span> in search field</td></tr>
+          <tr><td>Format SOAP note</td><td><span class="mono">Enter</span> after typing (via button)</td></tr>
+          <tr><td>Open OptiNote</td><td>Set in <code>chrome://extensions/shortcuts</code></td></tr>
+        </tbody>
+      </table>
+
+      <h3 style="font-family:var(--font-head);font-size:20px;margin:24px 0 12px;color:var(--ink)">Power user tips</h3>
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num" style="background:var(--amber)">★</div>
+          <div class="step-body">
+            <h4>Add a keyboard shortcut</h4>
+            <p>Go to <code>chrome://extensions/shortcuts</code> and assign a shortcut (e.g. <code>Ctrl+Shift+O</code>) to open OptiNote without clicking the toolbar.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:var(--amber)">★</div>
+          <div class="step-body">
+            <h4>SOAP + Template combo</h4>
+            <p>Use Templates first to generate a structured base note, then paste that output back into the SOAP tab to reformat it — useful for EMRs that require strict SOAP structure.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:var(--amber)">★</div>
+          <div class="step-body">
+            <h4>Build ICD-10 lists before clinic</h4>
+            <p>At the start of a busy clinic, pre-select the ICD-10 codes you'll likely need for the session. They stay selected until you close the extension.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:var(--amber)">★</div>
+          <div class="step-body">
+            <h4>Improve SOAP output</h4>
+            <p>The more specific your input, the better the output. Include measurements (IOP, VA, CDR), timeline (weeks/months), and laterality. Abbreviations like NPDR, PED, SRF are recognised.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="font-family:var(--font-head);font-size:20px;margin-bottom:16px;color:var(--ink)">Common issues</h3>
+      <div class="step-list">
+        <div class="step">
+          <div class="step-num" style="background:var(--error)">!</div>
+          <div class="step-body">
+            <h4>"SOAP returns an error"</h4>
+            <p>Check your Groq API key in Settings. If the key is correct, visit <strong>console.groq.com</strong> to check your rate limits haven't been hit (unlikely on free tier).</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:var(--error)">!</div>
+          <div class="step-body">
+            <h4>"No ICD-10 results found"</h4>
+            <p>Try shorter search terms. Search <code>AMD</code> rather than <code>age-related macular degeneration</code>. Single keywords work best: <code>floaters</code>, <code>ptosis</code>, <code>halos</code>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:var(--error)">!</div>
+          <div class="step-body">
+            <h4>"Extension disappeared from toolbar"</h4>
+            <p>Click the puzzle piece icon in Chrome → find OptiNote → click the pin icon to re-pin it.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num" style="background:var(--error)">!</div>
+          <div class="step-body">
+            <h4>"Developer mode warning on startup"</h4>
+            <p>Normal behaviour for unpacked extensions. Click <strong>Cancel</strong> each time — this doesn't affect functionality.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- ═══════════════════════════════════════════ FOOTER -->
+<footer>
+  <strong>OptiNote v1.0</strong> — AI-powered ophthalmic documentation assistant<br>
+  Built for NHS clinicians · GDPR-safe by design · No patient data stored externally<br><br>
+  <span style="font-size:11px;opacity:0.6">This tool is a documentation aid only. It does not provide clinical advice, diagnosis, or treatment recommendations.<br>All clinical decisions remain the responsibility of the qualified clinician.</span>
+</footer>
+
+</body>
+</html>
