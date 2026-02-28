@@ -1,0 +1,139 @@
+{
+  "symptoms": {
+    "blurred vision": [
+      { "code": "H53.8", "description": "Other visual disturbances", "condition": "General" },
+      { "code": "H26.9", "description": "Unspecified cataract", "condition": "Cataract" },
+      { "code": "H35.30", "description": "Unspecified macular degeneration", "condition": "AMD" }
+    ],
+    "floaters": [
+      { "code": "H43.399", "description": "Vitreous floaters, unspecified eye", "condition": "Vitreous" },
+      { "code": "H43.10", "description": "Vitreous haemorrhage, unspecified eye", "condition": "Vitreous" },
+      { "code": "H33.40", "description": "Retinal detachment with retinal break", "condition": "Retinal" }
+    ],
+    "flashes": [
+      { "code": "H53.19", "description": "Photopsia", "condition": "Retinal" },
+      { "code": "H33.40", "description": "Retinal detachment with retinal break", "condition": "Retinal" },
+      { "code": "H43.812", "description": "Vitreous degeneration, posterior vitreous detachment", "condition": "Vitreous" }
+    ],
+    "loss of vision": [
+      { "code": "H54.2", "description": "Low vision, both eyes", "condition": "Visual Impairment" },
+      { "code": "H34.10", "description": "Central retinal artery occlusion", "condition": "Vascular" },
+      { "code": "H34.81", "description": "Central retinal vein occlusion", "condition": "Vascular" }
+    ],
+    "red eye": [
+      { "code": "H10.9", "description": "Unspecified conjunctivitis", "condition": "Conjunctiva" },
+      { "code": "H16.9", "description": "Unspecified keratitis", "condition": "Cornea" },
+      { "code": "H20.9", "description": "Unspecified iridocyclitis", "condition": "Uveitis" }
+    ],
+    "eye pain": [
+      { "code": "H57.11", "description": "Ocular pain, right eye", "condition": "Symptom" },
+      { "code": "H40.10", "description": "Unspecified open-angle glaucoma", "condition": "Glaucoma" },
+      { "code": "H20.9", "description": "Unspecified iridocyclitis", "condition": "Uveitis" }
+    ],
+    "double vision": [
+      { "code": "H53.2", "description": "Diplopia", "condition": "Visual Disturbance" },
+      { "code": "H50.9", "description": "Unspecified strabismus", "condition": "Strabismus" }
+    ],
+    "field loss": [
+      { "code": "H53.40", "description": "Unspecified visual field defects", "condition": "Visual Field" },
+      { "code": "H40.10", "description": "Unspecified open-angle glaucoma", "condition": "Glaucoma" },
+      { "code": "H35.81", "description": "Retinal oedema", "condition": "Retinal" }
+    ],
+    "halos": [
+      { "code": "H40.10", "description": "Unspecified open-angle glaucoma", "condition": "Glaucoma" },
+      { "code": "H26.9", "description": "Unspecified cataract", "condition": "Cataract" }
+    ],
+    "wavy lines": [
+      { "code": "H53.15", "description": "Metamorphopsia", "condition": "AMD" },
+      { "code": "H35.32", "description": "Exudative age-related macular degeneration", "condition": "AMD" }
+    ],
+    "central scotoma": [
+      { "code": "H35.30", "description": "Unspecified macular degeneration", "condition": "AMD" },
+      { "code": "H35.81", "description": "Retinal oedema", "condition": "Retinal" }
+    ],
+    "discharge": [
+      { "code": "H10.029", "description": "Acute follicular conjunctivitis", "condition": "Conjunctiva" },
+      { "code": "H10.10", "description": "Acute atopic conjunctivitis", "condition": "Conjunctiva" }
+    ],
+    "itching": [
+      { "code": "H10.10", "description": "Acute atopic conjunctivitis, unspecified eye", "condition": "Conjunctiva" },
+      { "code": "H01.009", "description": "Unspecified blepharitis", "condition": "Eyelid" }
+    ],
+    "dry eyes": [
+      { "code": "H04.123", "description": "Dry eye syndrome", "condition": "Lacrimal" },
+      { "code": "H04.129", "description": "Dry eye syndrome, unspecified eye", "condition": "Lacrimal" }
+    ],
+    "tearing": [
+      { "code": "H04.20", "description": "Unspecified epiphora", "condition": "Lacrimal" },
+      { "code": "H04.53", "description": "Dacryostenosis", "condition": "Lacrimal" }
+    ],
+    "new vessels": [
+      { "code": "H35.05", "description": "Retinal neovascularisation", "condition": "DR" },
+      { "code": "H35.32", "description": "Exudative age-related macular degeneration", "condition": "AMD" }
+    ],
+    "microaneurysms": [
+      { "code": "H36.0", "description": "Diabetic retinopathy in type 2 DM", "condition": "DR" },
+      { "code": "E11.319", "description": "T2DM with unspecified diabetic retinopathy", "condition": "DR" }
+    ],
+    "cotton wool spots": [
+      { "code": "H36.0", "description": "Diabetic retinopathy", "condition": "DR" },
+      { "code": "H34.81", "description": "Central retinal vein occlusion", "condition": "Vascular" }
+    ],
+    "optic disc cupping": [
+      { "code": "H40.10", "description": "Unspecified open-angle glaucoma", "condition": "Glaucoma" },
+      { "code": "H47.319", "description": "Glaucomatous optic atrophy", "condition": "Glaucoma" }
+    ],
+    "elevated iop": [
+      { "code": "H40.10", "description": "Unspecified open-angle glaucoma", "condition": "Glaucoma" },
+      { "code": "H40.05", "description": "Ocular hypertension", "condition": "Glaucoma" }
+    ],
+    "ptosis": [
+      { "code": "H02.401", "description": "Unspecified ptosis of right eyelid", "condition": "Eyelid" },
+      { "code": "H02.409", "description": "Unspecified ptosis, unspecified eyelid", "condition": "Eyelid" }
+    ],
+    "prematurity": [
+      { "code": "H35.10", "description": "Unspecified retinopathy of prematurity", "condition": "ROP" },
+      { "code": "H35.17", "description": "ROP, stage 5", "condition": "ROP" }
+    ]
+  },
+  "conditions": {
+    "DR": [
+      { "code": "H36.0", "description": "Diabetic retinopathy in DM" },
+      { "code": "E11.319", "description": "T2DM with unspecified diabetic retinopathy" },
+      { "code": "E11.3211", "description": "T2DM with mild NPDR with macular oedema" },
+      { "code": "E11.3411", "description": "T2DM with severe NPDR with macular oedema" },
+      { "code": "E11.3511", "description": "T2DM with PDR with macular oedema" },
+      { "code": "H35.81", "description": "Retinal oedema / Diabetic macular oedema" }
+    ],
+    "AMD": [
+      { "code": "H35.30", "description": "Unspecified macular degeneration" },
+      { "code": "H35.31", "description": "Non-exudative age-related macular degeneration" },
+      { "code": "H35.32", "description": "Exudative (wet) age-related macular degeneration" },
+      { "code": "H53.15", "description": "Metamorphopsia" }
+    ],
+    "Glaucoma": [
+      { "code": "H40.10", "description": "Unspecified open-angle glaucoma" },
+      { "code": "H40.1110", "description": "Primary open-angle glaucoma, right eye, stage unspecified" },
+      { "code": "H40.20", "description": "Unspecified primary angle-closure glaucoma" },
+      { "code": "H40.05", "description": "Ocular hypertension" },
+      { "code": "H47.319", "description": "Glaucomatous optic atrophy" }
+    ],
+    "ROP": [
+      { "code": "H35.10", "description": "ROP, unspecified" },
+      { "code": "H35.11", "description": "ROP, stage 1" },
+      { "code": "H35.12", "description": "ROP, stage 2" },
+      { "code": "H35.13", "description": "ROP, stage 3" },
+      { "code": "H35.14", "description": "ROP, stage 4A" },
+      { "code": "H35.15", "description": "ROP, stage 4B" },
+      { "code": "H35.16", "description": "ROP, stage 5" },
+      { "code": "H35.172", "description": "ROP with plus disease" }
+    ],
+    "Cataract": [
+      { "code": "H25.9", "description": "Unspecified age-related cataract" },
+      { "code": "H25.10", "description": "Age-related nuclear cataract" },
+      { "code": "H25.20", "description": "Age-related cataract, morgagnian type" },
+      { "code": "H26.9", "description": "Unspecified cataract" },
+      { "code": "H26.001", "description": "Infantile and juvenile cortical cataract" }
+    ]
+  }
+}
