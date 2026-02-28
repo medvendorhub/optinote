@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OptiNote</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-logo">
+      <div class="logo-eye">
+        <div class="logo-iris"></div>
+        <div class="logo-pupil"></div>
+      </div>
+      <span class="logo-text">Opti<strong>Note</strong></span>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" id="settingsBtn" title="Settings">⚙</button>
+    </div>
+  </header>
+
+  <!-- Tab Navigation -->
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="templates">Templates</button>
+    <button class="tab-btn" data-tab="icd10">ICD-10</button>
+    <button class="tab-btn" data-tab="soap">SOAP</button>
+  </nav>
+
+  <!-- TEMPLATES TAB -->
+  <section class="tab-panel active" id="tab-templates">
+    <div class="section-label">Select condition</div>
+    <div class="condition-grid">
+      <button class="condition-chip active" data-condition="DR">
+        <span class="chip-icon">🩺</span>DR
+      </button>
+      <button class="condition-chip" data-condition="AMD">
+        <span class="chip-icon">👁</span>AMD
+      </button>
+      <button class="condition-chip" data-condition="Glaucoma">
+        <span class="chip-icon">📊</span>Glaucoma
+      </button>
+      <button class="condition-chip" data-condition="ROP">
+        <span class="chip-icon">👶</span>ROP
+      </button>
+      <button class="condition-chip" data-condition="Cataract">
+        <span class="chip-icon">🔬</span>Cataract
+      </button>
+    </div>
+
+    <!-- Template Forms -->
+    <div class="template-form" id="form-DR">
+      <div class="form-row">
+        <label>Patient ref</label>
+        <input type="text" placeholder="e.g. RH-2024-001" class="field" data-field="patient_ref">
+      </div>
+      <div class="form-row">
+        <label>Eye</label>
+        <div class="btn-group">
+          <button class="toggle-btn active" data-group="eye" data-value="R">Right</button>
+          <button class="toggle-btn" data-group="eye" data-value="L">Left</button>
+          <button class="toggle-btn" data-group="eye" data-value="BE">Both</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>DR grade</label>
+        <div class="btn-group">
+          <button class="toggle-btn active" data-group="dr_grade" data-value="No DR">None</button>
+          <button class="toggle-btn" data-group="dr_grade" data-value="Mild NPDR">Mild</button>
+          <button class="toggle-btn" data-group="dr_grade" data-value="Moderate NPDR">Mod</button>
+          <button class="toggle-btn" data-group="dr_grade" data-value="Severe NPDR">Severe</button>
+          <button class="toggle-btn" data-group="dr_grade" data-value="PDR">PDR</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Maculopathy</label>
+        <div class="btn-group">
+          <button class="toggle-btn active" data-group="maculopathy" data-value="No DMO">None</button>
+          <button class="toggle-btn" data-group="maculopathy" data-value="DMO present">DMO</button>
+          <button class="toggle-btn" data-group="maculopathy" data-value="CSMO">CSMO</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>VA (LogMAR)</label>
+        <input type="text" placeholder="e.g. 0.2" class="field field-sm" data-field="va">
+      </div>
+      <div class="form-row">
+        <label>HbA1c</label>
+        <input type="text" placeholder="e.g. 58 mmol/mol" class="field field-sm" data-field="hba1c">
+      </div>
+      <div class="form-row">
+        <label>Notes</label>
+        <textarea class="field field-ta" placeholder="Additional clinical observations..." data-field="notes" rows="2"></textarea>
+      </div>
+    </div>
+
+    <div class="template-form hidden" id="form-AMD">
+      <div class="form-row">
+        <label>Patient ref</label>
+        <input type="text" placeholder="e.g. RH-2024-001" class="field" data-field="patient_ref">
+      </div>
+      <div class="form-row">
+        <label>Eye</label>
+        <div class="btn-group">
+          <button class="toggle-btn active" data-group="eye" data-value="R">Right</button>
+          <button class="toggle-btn" data-group="eye" data-value="L">Left</button>
+          <button class="toggle-btn" data-group="eye" data-value="BE">Both</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>AMD type</label>
+        <div class="btn-group">
+          <button class="toggle-btn active" data-group="amd_type" data-value="Dry AMD">Dry</button>
+          <button class="toggle-btn" data-group="amd_type" data-value="Wet AMD">Wet</button>
+          <button class="toggle-btn" data-group="amd_type" data-value="Geographic atrophy">GA</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Stage</label>
+        <div class="btn-group">
+          <button class="toggle-btn active" data-group="amd_stage" data-value="Early">Early</button>
+          <button class="toggle-btn" data-group="amd_stage" data-value="Intermediate">Inter</button>
+          <button class="toggle-btn" data-group="amd_stage" data-value="Advanced">Adv</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>VA (LogMAR)</label>
+        <input type="text" placeholder="e.g. 0.5" class="field field-sm" data-field="va">
+      </div>
+      <div class="form-row">
+        <label>Anti-VEGF</label>
+        <div class="btn-group">
+          <button class="toggle-btn active" data-group="antivegf" data-value="None">None</button>
+          <button class="toggle-btn" data-group="antivegf" data-value="Ranibizumab">Ranib</button>
+          <button class="toggle-btn" data-group="antivegf" data-value="Aflibercept">Aflib</button>
+          <button class="toggle-btn" data-group="antivegf" data-value="Bevacizumab">Beva</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>OCT findings</label>
+        <textarea class="field field-ta" placeholder="SRF, IRF, subretinal fluid..." data-field="oct" rows="2"></textarea>
+      </div>
+    </div>
+
+    <div class="template-form hidden" id="form-Glaucoma">
+      <div class="form-row">
+        <label>Patient ref</label>
+        <input type="text" placeholder="e.g. RH-2024-001" class="field" data-field="patient_ref">
+      </div>
+      <div class="form-row">
+        <label>Eye</label>
+        <div class="btn-group">
+          <button class="toggle-btn active" data-group="eye" data-value="R">Right</button>
+          <button class="toggle-btn" data-group="eye" data-value="L">Left</button>
+          <button class="toggle-btn" data-group="eye" data-value="BE">Both</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Type</label>
+        <div class="btn-group">
+          <button class="toggle-btn active" data-group="glaucoma_type" data-value="POAG">POAG</button>
+          <button class="toggle-btn" data-group="glaucoma_type" data-value="PACG">PACG</button>
+          <button class="toggle-btn" data-group="glaucoma_type" data-value="OHT">OHT</button>
+          <button class="toggle-btn" data-group="glaucoma_type" data-value="NTG">NTG</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>IOP (mmHg)</label>
+        <div style="display:flex;gap:6px;">
+          <input type="text" placeholder="R" class="field field-xs" data-field="iop_r">
+          <input type="text" placeholder="L" class="field field-xs" data-field="iop_l">
+        </div>
+      </div>
+      <div class="form-row">
+        <label>CDR</label>
+        <div style="display:flex;gap:6px;">
+          <input type="text" placeholder="R e.g. 0.7" class="field field-xs" data-field="cdr_r">
+          <input type="text" placeholder="L e.g. 0.6" class="field field-xs" data-field="cdr_l">
+        </div>
+      </div>
+      <div class="form-row">
+        <label>VF status</label>
+        <div class="btn-group">
+          <button class="toggle-btn active" data-group="vf_status" data-value="Normal">Normal</button>
+          <button class="toggle-btn" data-group="vf_status" data-value="Mild loss">Mild</button>
+          <button class="toggle-btn" data-group="vf_status" data-value="Moderate loss">Mod</button>
+          <button class="toggle-btn" data-group="vf_status" data-value="Severe loss">Severe</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Drops</label>
+        <input type="text" placeholder="e.g. Latanoprost OD nocte" class="field" data-field="drops">
+      </div>
+    </div>
+
+    <div class="template-form hidden" id="form-ROP">
+      <div class="form-row">
+        <label>Infant ID</label>
+        <input type="text" placeholder="e.g. NNU-2024-042" class="field" data-field="patient_ref">
+      </div>
+      <div class="form-row">
+        <label>Gestational age</label>
+        <input type="text" placeholder="e.g. 28+3 weeks" class="field field-sm" data-field="gest_age">
+      </div>
+      <div class="form-row">
+        <label>PMA at exam</label>
+        <input type="text" placeholder="e.g. 34 weeks PMA" class="field field-sm" data-field="pma">
+      </div>
+      <div class="form-row">
+        <label>Eye</label>
+        <div class="btn-group">
+          <button class="toggle-btn active" data-group="eye" data-value="R">Right</button>
+          <button class="toggle-btn" data-group="eye" data-value="L">Left</button>
+          <button class="toggle-btn" data-group="eye" data-value="BE">Both</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>ROP stage</label>
+        <div class="btn-group">
+          <button class="toggle-btn active" data-group="rop_stage" data-value="Stage 1">1</button>
+          <button class="toggle-btn" data-group="rop_stage" data-value="Stage 2">2</button>
+          <button class="toggle-btn" data-group="rop_stage" data-value="Stage 3">3</button>
+          <button class="toggle-btn" data-group="rop_stage" data-value="Stage 4A">4A</button>
+          <button class="toggle-btn" data-group="rop_stage" data-value="Stage 4B">4B</button>
+          <button class="toggle-btn" data-group="rop_stage" data-value="Stage 5">5</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Zone</label>
+        <div class="btn-group">
+          <button class="toggle-btn active" data-group="rop_zone" data-value="Zone I">I</button>
+          <button class="toggle-btn" data-group="rop_zone" data-value="Zone II">II</button>
+          <button class="toggle-btn" data-group="rop_zone" data-value="Zone III">III</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Plus disease</label>
+        <div class="btn-group">
+          <button class="toggle-btn active" data-group="plus" data-value="No plus disease">Absent</button>
+          <button class="toggle-btn" data-group="plus" data-value="Pre-plus disease">Pre-plus</button>
+          <button class="toggle-btn" data-group="plus" data-value="Plus disease">Plus</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="template-form hidden" id="form-Cataract">
+      <div class="form-row">
+        <label>Patient ref</label>
+        <input type="text" placeholder="e.g. RH-2024-001" class="field" data-field="patient_ref">
+      </div>
+      <div class="form-row">
+        <label>Eye</label>
+        <div class="btn-group">
+          <button class="toggle-btn active" data-group="eye" data-value="R">Right</button>
+          <button class="toggle-btn" data-group="eye" data-value="L">Left</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Type</label>
+        <div class="btn-group">
+          <button class="toggle-btn active" data-group="cat_type" data-value="Nuclear">Nuclear</button>
+          <button class="toggle-btn" data-group="cat_type" data-value="Cortical">Cortical</button>
+          <button class="toggle-btn" data-group="cat_type" data-value="Posterior subcapsular">PSC</button>
+          <button class="toggle-btn" data-group="cat_type" data-value="Mixed">Mixed</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Grade (LOCS)</label>
+        <div class="btn-group">
+          <button class="toggle-btn active" data-group="cat_grade" data-value="Grade 1">1</button>
+          <button class="toggle-btn" data-group="cat_grade" data-value="Grade 2">2</button>
+          <button class="toggle-btn" data-group="cat_grade" data-value="Grade 3">3</button>
+          <button class="toggle-btn" data-group="cat_grade" data-value="Grade 4">4</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>VA (Snellen)</label>
+        <input type="text" placeholder="e.g. 6/18" class="field field-sm" data-field="va_snellen">
+      </div>
+      <div class="form-row">
+        <label>VA (LogMAR)</label>
+        <input type="text" placeholder="e.g. 0.48" class="field field-sm" data-field="va_logmar">
+      </div>
+      <div class="form-row">
+        <label>Symptoms</label>
+        <textarea class="field field-ta" placeholder="Glare, blurred vision, colour change..." data-field="symptoms" rows="2"></textarea>
+      </div>
+    </div>
+
+    <div class="template-actions">
+      <button class="btn-secondary" id="clearTemplateBtn">Clear</button>
+      <button class="btn-primary" id="generateNoteBtn">Generate note</button>
+    </div>
+
+    <div class="output-box hidden" id="templateOutput">
+      <div class="output-header">
+        <span class="output-label">Clinical note</span>
+        <button class="copy-btn" id="copyTemplateBtn">Copy</button>
+      </div>
+      <pre class="output-text" id="templateText"></pre>
+    </div>
+  </section>
+
+  <!-- ICD-10 TAB -->
+  <section class="tab-panel hidden" id="tab-icd10">
+    <div class="search-row">
+      <input type="text" id="icd10Search" class="field icd-search" placeholder="Type symptom or condition...">
+      <button class="btn-primary" id="icd10SearchBtn">Search</button>
+    </div>
+    <div class="quick-tags">
+      <span class="section-label">Quick:</span>
+      <button class="tag-btn" data-symptom="DR">DR</button>
+      <button class="tag-btn" data-symptom="AMD">AMD</button>
+      <button class="tag-btn" data-symptom="Glaucoma">Glaucoma</button>
+      <button class="tag-btn" data-symptom="ROP">ROP</button>
+      <button class="tag-btn" data-symptom="Cataract">Cataract</button>
+      <button class="tag-btn" data-symptom="floaters">Floaters</button>
+      <button class="tag-btn" data-symptom="red eye">Red eye</button>
+      <button class="tag-btn" data-symptom="field loss">Field loss</button>
+    </div>
+    <div id="icd10Results" class="icd-results"></div>
+    <div class="selected-codes-panel" id="selectedCodesPanel">
+      <div class="output-header">
+        <span class="output-label">Selected codes</span>
+        <button class="copy-btn" id="copyCodesBtn">Copy all</button>
+      </div>
+      <div id="selectedCodesList" class="selected-codes-list"></div>
+    </div>
+  </section>
+
+  <!-- SOAP TAB -->
+  <section class="tab-panel hidden" id="tab-soap">
+    <div class="soap-intro">
+      <span class="badge">Groq AI</span>
+      <p>Paste free-text clinical notes and get a structured SOAP format. Processed via Groq — no data stored externally.</p>
+    </div>
+    <div class="form-row">
+      <label>Clinical notes (free text)</label>
+      <textarea class="field field-ta" id="soapInput" placeholder="e.g. Patient attended for diabetic eye screening. Mild background retinopathy noted in right eye. VA 6/9 right, 6/6 left. No maculopathy. Patient reports no new symptoms. HbA1c last checked at 62 mmol/mol. Referred to community optometry for annual review." rows="6"></textarea>
+    </div>
+    <div class="form-row">
+      <label>Specialty context <span class="optional">optional</span></label>
+      <div class="btn-group">
+        <button class="toggle-btn active" data-group="soap_context" data-value="General ophthalmology">General</button>
+        <button class="toggle-btn" data-group="soap_context" data-value="Diabetic retinopathy screening">DR Screen</button>
+        <button class="toggle-btn" data-group="soap_context" data-value="Medical retina">Med Retina</button>
+        <button class="toggle-btn" data-group="soap_context" data-value="Glaucoma clinic">Glaucoma</button>
+        <button class="toggle-btn" data-group="soap_context" data-value="Paediatric ophthalmology">Paeds</button>
+      </div>
+    </div>
+    <div class="template-actions">
+      <button class="btn-secondary" id="clearSoapBtn">Clear</button>
+      <button class="btn-primary" id="formatSoapBtn">Format SOAP <span class="key-hint">↵</span></button>
+    </div>
+    <div class="output-box hidden" id="soapOutput">
+      <div class="output-header">
+        <span class="output-label">SOAP note</span>
+        <button class="copy-btn" id="copySoapBtn">Copy</button>
+      </div>
+      <pre class="output-text" id="soapText"></pre>
+    </div>
+    <div class="loading hidden" id="soapLoading">
+      <div class="spinner"></div>
+      <span>Formatting with Groq AI…</span>
+    </div>
+  </section>
+
+  <!-- SETTINGS PANEL (overlay) -->
+  <div class="settings-overlay hidden" id="settingsOverlay">
+    <div class="settings-panel">
+      <div class="settings-header">
+        <span>Settings</span>
+        <button class="icon-btn" id="closeSettingsBtn">✕</button>
+      </div>
+      <div class="form-row">
+        <label>Groq API Key</label>
+        <input type="password" id="groqApiKey" class="field" placeholder="gsk_...">
+        <p class="hint">Required for SOAP formatting. Get your free key at <a href="https://console.groq.com" target="_blank">console.groq.com</a>. Your key is stored locally only.</p>
+      </div>
+      <div class="form-row">
+        <label>Clinician name <span class="optional">optional</span></label>
+        <input type="text" id="clinicianName" class="field" placeholder="e.g. Dr A. Patel">
+      </div>
+      <div class="form-row">
+        <label>Department</label>
+        <input type="text" id="department" class="field" placeholder="e.g. Ophthalmology, QE Hospital">
+      </div>
+      <button class="btn-primary" id="saveSettingsBtn">Save settings</button>
+      <div class="save-confirm hidden" id="saveConfirm">✓ Saved</div>
+      <div class="settings-footer">
+        <p class="privacy-note">🔒 No patient data leaves your browser. GDPR-safe by design.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>
